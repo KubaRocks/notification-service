@@ -5,7 +5,7 @@ namespace Domain;
 
 use Domain\Exception\InvalidDeviceTokenException;
 
-class Device
+final class Device
 {
     private string $token;
 
@@ -15,5 +15,10 @@ class Device
             throw InvalidDeviceTokenException::createWhenEmpty();
         }
         $this->token = $token;
+    }
+
+    public function __toString(): string
+    {
+        return $this->token;
     }
 }

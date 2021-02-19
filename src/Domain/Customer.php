@@ -21,8 +21,8 @@ final class Customer
     public function __construct(
         string $name,
         Email $email,
-        ?Language $language,
-        ?PhoneNumber $phoneNumber,
+        ?Language $language = null,
+        ?PhoneNumber $phoneNumber = null,
         ?Device ...$devices
     ) {
         if (empty($name)) {
@@ -34,5 +34,35 @@ final class Customer
         $this->languagePreference = $language ?? new Language(Language::LANGUAGE_ENGLISH);
         $this->phoneNumber = $phoneNumber;
         $this->devices = $devices;
+    }
+
+    public function canNotifyViaPush(): bool
+    {
+        return !empty($this->devices);
+    }
+
+    public function canNotifyViaSms(): bool
+    {
+        return null !== $this->phoneNumber;
+    }
+
+    public function getEmail(): Email
+    {
+        return $this->email;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s <%s>',
+            $this->name,
+            (string) $this->getEmail()
+        );
+    }
+
+    /** @return ?Device[] */
+    public function getDevices(): ?array
+    {
+        return $this->devices;
     }
 }

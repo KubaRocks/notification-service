@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Domain;
 
-class Message
+final class Message
 {
     private Customer $recipient;
 
@@ -16,5 +16,20 @@ class Message
         $this->recipient = $recipient;
         $this->subject = $subject;
         $this->content = $content;
+    }
+
+    public function getSubject(): string
+    {
+        return $this->subject;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    public function getRecipient(): Customer
+    {
+        return $this->recipient;
     }
 }
