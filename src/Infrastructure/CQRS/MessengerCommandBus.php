@@ -7,7 +7,7 @@ use Application\CQRS\Command;
 use Application\CQRS\CommandBus;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class MessengerCommandBus implements CommandBus
+final class MessengerCommandBus implements CommandBus
 {
     private MessageBusInterface $commandBus;
 

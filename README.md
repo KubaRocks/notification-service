@@ -1,8 +1,8 @@
 # Back-End Engineer technical task
 
-## What I Do
+## What I Do and Why
 
-This application purpose is to send notifications over several channels: mail, push notifications and SMS.
+This application purpose is to send `Messages` to the `Customer` over several channels: mail, push notifications and SMS.
 
 I've decided to choose symfony framework as a base, because OTB it provides services such as mailer or messenger, which
 were crucial for this implementation. Also, I know it quite well, so it was easy for me to spin everything up.
@@ -20,7 +20,7 @@ address, so this is the thing that always will be present. Then `Customer` may a
 
 ### Trade-offs
 
-`SmsNotifier` is missing. Application has interface for it, but didn't have time to proper implement it.
+`SmsNotifier` is missing. Application has interface for it, but I didn't have time to proper implement it.
 Also, implementation of `Pushy` is very sketchy. I just pasted the code from the docs and tweak it a little just to 
 make it work, but it requires for sure proper implementation.  
 I wanted application to react on some event in the system and then send notification to the user.
@@ -28,7 +28,15 @@ Didn't have time to implement an actual event dispatching and subscribing.
 Also, no database was used to store anything and although Domain is prepared for language adjustments I didn't have time
 to implement translator in infrastructure layer.
 Application is prepared to run asynchronously (using redis), but this also wasn't implement.
-Not all tests were written.  
+
+Not all tests were written. 
+
+I've also noticed that in symfony 5.2 they've changed registration of `AppExtension` which I've always used to provide
+custom configuration for my applications. I didn't have time to deeply dig into it on how this suppose to be done now.
+In the past I've simply created `AppExtension` and `Configuration` and register Extension in the `Kernel`.
+No I saw that `Container::registerExtension` method is no longer there, so I was unable to provide my custom config.
+I wanted to use this for switching on and off the channels in `NotificationService`. For now configuration of channels
+is not perfect (as done simply on constants) and placed in the `NotificationService`.
 
 ## Installation
 

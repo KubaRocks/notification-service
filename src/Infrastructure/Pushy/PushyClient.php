@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Infrastructure\Pushy;
 
-class PushyClient implements PushyClientInterface
+final class PushyClient implements PushyClientInterface
 {
     private string $apiKey;
 

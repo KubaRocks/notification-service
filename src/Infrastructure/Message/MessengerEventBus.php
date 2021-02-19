@@ -7,7 +7,7 @@ use Application\Message\Event;
 use Application\Message\EventBus;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class MessengerEventBus implements EventBus
+final class MessengerEventBus implements EventBus
 {
     private MessageBusInterface $eventBus;
 
