@@ -7,7 +7,7 @@ use Domain\Exception\InvalidLanguageException;
 use Domain\Language;
 use PHPUnit\Framework\TestCase;
 
-class LanguageTest extends TestCase
+final class LanguageTest extends TestCase
 {
     public function test_it_should_throw_exception_while_providing_not_supported_language(): void
     {

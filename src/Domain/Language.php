@@ -26,4 +26,19 @@ final class Language
         }
         $this->language = $language;
     }
+
+    public static function createEnglishLanguage(): self
+    {
+        return new self(self::LANGUAGE_ENGLISH);
+    }
+
+    public static function createRussianLanguage(): self
+    {
+        return new self(self::LANGUAGE_RUSSIAN);
+    }
+
+    public static function createPolishLanguage(): self
+    {
+        return new self(self::LANGUAGE_POLISH);
+    }
 }
