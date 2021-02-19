@@ -11,21 +11,31 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    _instanceof:
+        Application\CQRS\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
+    Application\:
+        resource: '../src/Application'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+            - '../src/Application/Kernel.php'
+
+    Domain\:
+        resource: '../src/Domain'
+
+    Infrastructure\:
+        resource: '../src/Infrastructure'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
+    UI\Controller\:
+        resource: '../src/UI/Controller/'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    Application\
