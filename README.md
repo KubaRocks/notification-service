@@ -27,7 +27,7 @@ I wanted application to react on some event in the system and then send notifica
 Didn't have time to implement an actual event dispatching and subscribing.
 Also, no database was used to store anything and although Domain is prepared for language adjustments I didn't have time
 to implement translator in infrastructure layer.
-Application is prepared to run asynchronously, but this also wasn't implement.
+Application is prepared to run asynchronously (using redis), but this also wasn't implement.
 Not all tests were written.  
 
 ## Installation
